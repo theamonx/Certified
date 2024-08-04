@@ -1,21 +1,27 @@
 import { useState } from 'react';
 import { useHover } from '@/context/HoverContext';
 
-const Form = ()=>{
+interface FormData {
+    name: string;
+    sr: string;
+    email: string;
+}
+
+const Form: React.FC = ()=>{
 
     const { handleMouseEnter, handleMouseLeave } = useHover();
 
     const [formData, setFormData] = useState({
-        field1: '',
-        field2: '',
-        field3: '',
+        name: '',
+        sr: '',
+        email: '',
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e: React.FormEvent) =>{
         e.preventDefault();
         console.log('Form submitted:', formData);
     }
